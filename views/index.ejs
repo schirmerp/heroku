@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+   
+    <ul = class="message_container">
+      <% messages.forEach(function(message){%>
+        <li class="messageBox">
+          <%= message.text %>
+          <br/>
+          <%= message.user %>
+          <br/>
+          <%= message.added %>
+        </li>
+        <% }) %>
+    </ul>
+    <a href="http://localhost:3000/new">New Message</a>
+  </body>
+</html>
