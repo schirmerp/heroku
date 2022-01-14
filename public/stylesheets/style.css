@@ -6,3 +6,29 @@ body {
 a {
   color: #00B7FF;
 }
+
+.messageBox{
+  border: .10px solid black;
+  width: 30em;
+  margin: 10px;
+
+
+}
+.messageBox:hover{
+  box-shadow: 5px 5px 8px 10px rgb(212, 206, 206);
+  background-color: rgb(245, 245, 244);
+}
+.text{
+  padding: 5px;
+  text-align: start;
+  list-style: inside circle;
+}
+.user{
+  padding: 5px;
+  text-align: end;
+  list-style: inside;
+}
+.date{
+  padding: 5px;
+  list-style: inside square;
+}

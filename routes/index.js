@@ -2,7 +2,8 @@ const { text } = require('express');
 var express = require('express');
 const res = require('express/lib/response');
 var router = express.Router();
-
+var pool = require('../db.js')
+var url = require('url')
 const messages = [
   {
     text: "Hi there!",
@@ -26,14 +27,28 @@ router.get('/', function(req, res, next) {
 router.get('/new', function(req, res){
   res.render('form', { title: 'New Message' })
 })
-
-router.post('/new', function(req, res){
-  var messtext = req.body.messText
-  var author = req.body.user  
+router.get("/index", async (req, res)=>{
+  try{
+    const newState = await pool.query("SELECT * FROM public.log")
+      res.json(newState.rows)
   
-  messages.push({text: messtext, user: author, added: new Date() })
+  } catch (err) {
+      console.log(err.message)
+  }
+})
 
-  res.redirect('/')
+router.post('/new', async function(req, res){
+  try { 
+    var messtext = req.body.messText
+    var author = req.body.user  
+    var date = new Date()
+    const newMessage = await pool.query("INSERT INTO log (content, author, date) VALUES ($1, $2, $3)", [messtext, author, date])
+    messages.push({text: messtext, user: author, added: date })
+    console.log(newMessage.rows)
+    res.redirect('/')
+  }catch (err){
+    console.log(err.message)
+  }
 })
 
 module.exports = router;

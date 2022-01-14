@@ -5,18 +5,22 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-   
-    <ul = class="message_container">
-      <% messages.forEach(function(message){%>
-        <li class="messageBox">
+    <% messages.forEach(function(message){%>
+    <ul = class="messageBox">
+     
+        <li class="text">
           <%= message.text %>
-          <br/>
+        </li>
+        <li class="user">
           <%= message.user %>
-          <br/>
+        </li>
+        <li class="date">
           <%= message.added %>
         </li>
-        <% }) %>
+        
+        
     </ul>
+    <% }) %>
     <a href="http://localhost:3000/new">New Message</a>
   </body>
 </html>
